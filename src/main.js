@@ -2,21 +2,41 @@ import Vue from 'vue'
 import App from './App'
 
 Vue.config.productionTip = false
-App.mpType = 'app'
 
 const app = new Vue(App)
 app.$mount()
 
 export default {
-  // 这个字段走 app.json
   config: {
-    // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
-    pages: ['pages/logs/main', '^pages/index/main'],
+    pages: ['^pages/books/main', 'pages/me/main', 'pages/comments/main'],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarBackgroundColor: '#EA5149',
+      navigationBarTitleText: 'We Book',
+      navigationBarTextStyle: 'light'
+    },
+    tabBar: {
+      selectColor: '#EA5149',
+      list: [
+        {
+          text: '图书',
+          pagePath: 'pages/books/main',
+          iconPath: 'static/img/book.png',
+          selectedIconPath: 'static/img/book-active.png'
+        },
+        {
+          text: '评论',
+          pagePath: 'pages/comments/main',
+          iconPath: 'static/img/todo.png',
+          selectedIconPath: 'static/img/todo-active.png'
+        },
+        {
+          text: '我',
+          pagePath: 'pages/me/main',
+          iconPath: 'static/img/me.png',
+          selectedIconPath: 'static/img/me-active.png'
+        }
+      ]
     }
   }
 }

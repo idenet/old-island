@@ -1,21 +1,27 @@
 # weapp-books
 
-> A Mpvue project
+## 踩坑
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+```
+登录失败 Error: 获取微信用户信息失败，请检查网络状态
+    at n.fail (login.js:26)
+    at Object.fail (WAService.js:3)
+    at Function.<anonymous> (WAService.js:4)
+    at n.function.setTimeout (appservice:1162)
+    at WAService.js:3
+    at WAService.js:8
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+微信的 wx.getUserInfo 不再弹窗授权，得修改为 button 弹窗获取用户信息
+
+```
+<div>
+   <button open-type="getUserInfo" lang="zh_CN" @getuserinfo="doLogin">获取用户信息</button>
+<div>
+```
+
+water2-clinet-sdk 升级为 2.0，使用新的语法登录
+
+### 下拉刷新
+
+需要将函数放到 methods 外面

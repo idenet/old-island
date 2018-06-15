@@ -1,31 +1,42 @@
 <script>
 export default {
-  created () {
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    console.log('app created and cache logs by setStorageSync')
+  created() {
+    console.log('小程序启动')
   }
 }
 </script>
 
 <style>
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
+.text-footer {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
-/* this rule will be remove */
-* {
-  transition: width 2s;
-  -moz-transition: width 2s;
-  -webkit-transition: width 2s;
-  -o-transition: width 2s;
+.text-primary {
+  color: #ea5149;
+}
+.page-title {
+  padding-left: 20px;
+  background: #eee;
+  line-height: 40px;
+  font-size: 14px;
+}
+.right {
+  float: right;
+}
+.btn {
+  color: white;
+  background: #ea5a49;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  padding-left: 15px;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+  width: 100%;
+}
+.btn:active {
+  background: #fa5a49;
 }
 </style>
