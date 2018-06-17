@@ -25,15 +25,30 @@ module.exports = async ctx => {
 
     let url = `https://api.douban.com/v2/book/isbn/${isbn}`
     const bookinfo = await getJSON(url)
-    const data = orgnizeData(bookinfo)
+    const rate = bookinfo.rating.average
+    const { title, image, alt, publisher, summary, price } = bookinfo
+    const tags = bookinfo.tags
+      .map(v => {
+        return `${v.title} ${v.count}`
+      })
+      .join(',')
+    const author = bookinfo.author.join(',')
     try {
       await mysql('books').insert({
         isbn,
         openId,
-        ...data
+        rate,
+        title,
+        image,
+        alt,
+        publisher,
+        summary,
+        price,
+        tags,
+        author
       })
       ctx.state.data = {
-        title: data.title,
+        title: title,
         msg: 'success'
       }
     } catch (error) {
@@ -47,35 +62,6 @@ module.exports = async ctx => {
   }
 }
 
-/**
- * 组织数据
- *
- * @author 香香鸡
- * @param {*} data
- * @returns
- */
-function orgnizeData (data) {
-  const rate = data.rating.average // 评分
-  const { title, image, alt, publisher, summary, price } = data
-  const tags = data.tags
-    .map(v => {
-      return `${v.title} ${v.count}`
-    })
-    .join(',')
-  const author = data.author.join(',')
-  const bookinfo = {
-    rate,
-    title,
-    image,
-    alt,
-    publisher,
-    summary,
-    price,
-    tags,
-    author
-  }
-  return bookinfo
-}
 /**
  *https
  *
