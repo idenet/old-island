@@ -12,7 +12,7 @@ export default {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#EA5149',
-      navigationBarTitleText: 'We Book',
+      navigationBarTitleText: 'entry book',
       navigationBarTextStyle: 'light'
     },
     tabBar: {
